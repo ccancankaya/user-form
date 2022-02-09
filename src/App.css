@@ -11,3 +11,9 @@
   overflow-y: auto;
   max-height: 500px;
 }
+
+@media screen and (max-width: 600px) {
+  .imgEifel {
+    display: none;
+  }
+}

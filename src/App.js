@@ -1,5 +1,5 @@
 import "./App.css";
-import { useFormikContext, Formik, Form, Field, useFormik } from 'formik';
+import { Formik, Form, Field } from 'formik';
 import eifel from "./images/eifel.jpg";
 import pic1 from "./images/pic1.jpg";
 import pic2 from "./images/pic2.png";
@@ -23,6 +23,8 @@ import pic19 from "./images/pic19.jpg";
 import pic20 from "./images/pic20.jpg";
 
 import { useState } from 'react'
+import alertify from 'alertifyjs';
+import 'alertifyjs/build/css/alertify.css';
 
 function App() {
   const [visible, setVisible] = useState(true);
@@ -73,11 +75,11 @@ function App() {
 
     <div className="container app">
       <div className="row page1">
-        <div class="col-md-3 left">
-          <img src={eifel} width="320" height="670" />
+        <div className="col-md-3 left">
+          <img className="imgEifel" src={eifel} width="320" height="670" />
         </div>
 
-        <div class="col-md-9 bg-dark right">
+        <div className="col-md-9 bg-dark right">
           <Formik
             initialValues={{
               companyName: '',
@@ -93,8 +95,61 @@ function App() {
               freeText3: '',
               freeText4: ''
             }}
+
             onSubmit={(values) => {
-              alert(JSON.stringify(values.companyName));
+              // let query = "query {boards (ids: 2253272966) {owner{ id }  columns {   title   type   id }}}";
+
+              // fetch ("https://api.monday.com/v2", {
+              //   method: 'post',
+              //   headers: {
+              //     'Content-Type': 'application/json',
+              //     'Authorization' : 'eyJhbGciOiJIUzI1NiJ9.eyJ0aWQiOjE0NDUxODg5NCwidWlkIjoxMDIzOTE4MCwiaWFkIjoiMjAyMi0wMi0wNlQxNDozMDo1NS4wMDBaIiwicGVyIjoibWU6d3JpdGUiLCJhY3RpZCI6NDY0NzMwMSwicmduIjoidXNlMSJ9.akmSYIuTMhnSetB6Z7bO9kqk8o6zM0_s7RgtWHNvvdw'
+              //   },
+              //    body: JSON.stringify({
+              //      'query': query
+              //    })
+              //   })
+              //    .then(res => res.json())
+              //    .then(res => console.log(JSON.stringify(res, null, 2)));
+
+              alertify.alert('Mesaj', 'Gönderiliyor');
+              let query3 = 'mutation{ create_item (board_id:2253272966, item_name:\"Yeni form kaydı\") { id } }';
+
+              fetch("https://api.monday.com/v2", {
+                method: 'post',
+                headers: {
+                  'Content-Type': 'application/json',
+                  'Authorization': 'eyJhbGciOiJIUzI1NiJ9.eyJ0aWQiOjE0NDUxODg5NCwidWlkIjoxMDIzOTE4MCwiaWFkIjoiMjAyMi0wMi0wNlQxNDozMDo1NS4wMDBaIiwicGVyIjoibWU6d3JpdGUiLCJhY3RpZCI6NDY0NzMwMSwicmduIjoidXNlMSJ9.akmSYIuTMhnSetB6Z7bO9kqk8o6zM0_s7RgtWHNvvdw'
+                },
+                body: JSON.stringify({
+                  'query': query3
+                })
+              })
+                .then(res => res.json())
+                .then(res => {
+                  fetch("https://api.monday.com/v2", {
+                    method: 'post',
+                    headers: {
+                      'Content-Type': 'application/json',
+                      'Authorization': 'eyJhbGciOiJIUzI1NiJ9.eyJ0aWQiOjE0NDUxODg5NCwidWlkIjoxMDIzOTE4MCwiaWFkIjoiMjAyMi0wMi0wNlQxNDozMDo1NS4wMDBaIiwicGVyIjoibWU6d3JpdGUiLCJhY3RpZCI6NDY0NzMwMSwicmduIjoidXNlMSJ9.akmSYIuTMhnSetB6Z7bO9kqk8o6zM0_s7RgtWHNvvdw'
+                    },
+                    body: JSON.stringify({
+                      query: "mutation ($myBoardId:Int!, $myItemId:Int!, $myColumnValues:JSON!) { change_multiple_column_values(item_id:$myItemId, board_id:$myBoardId, column_values: $myColumnValues) { id }}",
+                      variables: JSON.stringify({
+                        myBoardId: 2253272966,
+                        myItemId: 2267886158,
+                        myItemId: Number(res.data.create_item.id),
+                        myColumnValues: `{\"text\" : \"${values.companyName}\",\"b\" : \"${values.firstAndLastName}\",\"c\" : \"${values.email}\",\"metin\" : \"${values.phone}\",\"kay_t_tarihi\" : \"${new Date().toLocaleString("tr-TR")}\",\"metin6\" : \"${values.outdoorChecked.toString()}\",\"metin2\" : \"${values.indoorChecked.toString()}\",\"metin9\" : \"${values.freeText}\",\"metin96\" : \"${values.tasarufChecked.toString()}\",\"metin26\" : \"${values.freeText2}\",\"metin5\" : \"${values.specialTasarufChecked.toString()}\",\"metin7\" : \"${values.freeText4}\"}`
+                      })
+                    })
+                  })
+                    .then(res => {
+                      alertify.alert('Gönderildi', function () {
+                        alertify.success('Gönderildi');
+                      });; window.location.reload()
+                    })
+                }
+                );
             }}
           >
             <Form>
@@ -170,8 +225,8 @@ function App() {
                     <Field type="text" name="companyName" className="form-control" />
                   </div>
                   <div class="mb-3">
-                    <label for="firsAndLastName" class="form-label">İsim soyisim</label>
-                    <Field type="text" name="firsAndLastName" className="form-control" />
+                    <label for="firstAndLastName" class="form-label">İsim soyisim</label>
+                    <Field type="text" name="firstAndLastName" className="form-control" />
                   </div>
                   <div class="mb-3">
                     <label for="email" class="form-label">E-posta adresi</label>
@@ -489,7 +544,11 @@ function App() {
                       </div>
                     </div>
                   </div>
+
                 </div>
+
+
+
                 <div class="card-footer text-end">
                   <button type="button" class="btn btn-primary" onClick={visibleToBack1} style={{ marginRight: "5px" }}>Geri</button>
 
@@ -502,7 +561,7 @@ function App() {
         </div>
       </div>
 
-    </div>
+    </div >
   );
 }
 
