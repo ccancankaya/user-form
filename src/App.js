@@ -264,7 +264,7 @@ function App() {
                                 <img src={pic1} class="card-img-top" height="150" />
                               </div>
                               <label>
-                                <Field className="form-check-input" type="checkbox" name="outdoorChecked" value="outdoorOne:true" />
+                                <Field className="form-check-input" type="checkbox" name="outdoorChecked" value="Sınır duvarından tırmanırken ya da bariyer altından geçerken uyarı:Evet" />
                                 Sınır duvarından tırmanırken ya da bariyer altından geçerken uyarı
                               </label>
                             </div>
@@ -273,7 +273,7 @@ function App() {
                                 <img src={pic2} class="card-img-top" height="150" />
                               </div>
                               <label>
-                                <Field className="form-check-input" type="checkbox" name="outdoorChecked" value="outdoorTwo:true" />
+                                <Field className="form-check-input" type="checkbox" name="outdoorChecked" value="Bahçe alanına izinsiz girişte uyarı:Evet" />
                                 Bahçe alanına izinsiz girişte uyarı
                               </label>
                             </div>
@@ -282,7 +282,7 @@ function App() {
                                 <img src={pic3} class="card-img-top" height="150" />
                               </div>
                               <label>
-                                <Field className="form-check-input" type="checkbox" name="outdoorChecked" value="outdoorThree:true" />
+                                <Field className="form-check-input" type="checkbox" name="outdoorChecked" value="Dış kapı önünde şüpheli durumda uyarı:Evet" />
                                 Dış kapı önünde şüpheli durumda uyarı
                               </label>
                             </div>
@@ -301,7 +301,7 @@ function App() {
                                 <img src={pic4} class="card-img-top" height="150" />
                               </div>
                               <label>
-                                <Field className="form-check-input" type="checkbox" name="indoorChecked" value="indoorOne:true" />
+                                <Field className="form-check-input" type="checkbox" name="indoorChecked" value="Çalışma saatleri dışında şüpheli bir kişi iş yerine girdiğinde:Evet" />
                                 Çalışma saatleri dışında şüpheli bir kişi iş yerine girdiğinde
                               </label>
                             </div>
@@ -310,7 +310,7 @@ function App() {
                                 <img src={pic5} class="card-img-top" height="150" />
                               </div>
                               <label>
-                                <Field className="form-check-input" type="checkbox" name="indoorChecked" value="indoorTwo:true" />
+                                <Field className="form-check-input" type="checkbox" name="indoorChecked" value="Günün her saati, yönetim odası, depo, muhasebe gibi bir odamıza bir kişi girdiğinde:Evet" />
                                 Günün her saati, yönetim odası, depo, muhasebe gibi bir odamıza bir kişi girdiğinde
                               </label>
                             </div>
@@ -319,7 +319,7 @@ function App() {
                                 <img src={pic6} class="card-img-top" height="150" />
                               </div>
                               <label>
-                                <Field className="form-check-input" type="checkbox" name="indoorChecked" value="indoorThree:true" />
+                                <Field className="form-check-input" type="checkbox" name="indoorChecked" value="Günün her saati, ortak çalışma alanlarında yetkili bir kişinin olmaması durumu:Evet" />
                                 Günün her saati, ortak çalışma alanlarında yetkili bir kişinin olmaması durumu
                               </label>
                             </div>
@@ -360,73 +360,73 @@ function App() {
                           <div className="row">
                             <div class="col-md-6">
                               <div className="card">
-                                <img src={pic7} class="card-img-top" height="150" />
+                                <img src={pic7} class="card-img-top resim" height="150" width="90"/>
                               </div>
                               <label>
-                                <Field className="form-check-input" type="checkbox" name="tasarufChecked" value="tasarufCheckedOne:true" />
+                                <Field className="form-check-input" type="checkbox" name="tasarufChecked" value="Kapılar (I: 300/ay):Evet" />
                                 Kapılar (I: 300/ay)
                               </label>
                             </div>
                             <div class="col-md-6">
                               <div className="card">
-                                <img src={pic8} class="card-img-top" height="150" />
+                                <img src={pic8} class="card-img-top resim" height="150" />
                               </div>
                               <label>
-                                <Field className="form-check-input" type="checkbox" name="tasarufChecked" value="tasarufCheckedTwo:true" />
+                                <Field className="form-check-input" type="checkbox" name="tasarufChecked" value="Pencereler (I: 300/ay):Evet" />
                                 Pencereler (I: 300/ay)
                               </label>
                             </div>
                             <div class="col-md-6">
                               <div className="card">
-                                <img src={pic9} class="card-img-top" height="150" />
+                                <img src={pic9} class="card-img-top resim" height="150" />
                               </div>
                               <label>
-                                <Field className="form-check-input" type="checkbox" name="tasarufChecked" value="tasarufCheckedThree:true" />
+                                <Field className="form-check-input" type="checkbox" name="tasarufChecked" value="Kombi (350/ay):Evet" />
                                 Kombi (350/ay)
                               </label>
                             </div>
                             <div class="col-md-6">
                               <div className="card">
-                                <img src={pic10} class="card-img-top" height="150" />
+                                <img src={pic10} class="card-img-top resim" height="150" />
                               </div>
                               <label>
-                                <Field className="form-check-input" type="checkbox" name="tasarufChecked" value="tasarufCheckedFour:true" />
+                                <Field className="form-check-input" type="checkbox" name="tasarufChecked" value="Kettle ve Benzeri Mutfak Araçları (150/ay):Evet" />
                                 Kettle ve Benzeri Mutfak Araçları (150/ay)
                               </label>
                             </div>
                             <div class="col-md-6">
                               <div className="card">
-                                <img src={pic11} class="card-img-top" height="150" />
+                                <img src={pic11} class="card-img-top resim" height="150" />
                               </div>
                               <label>
-                                <Field className="form-check-input" type="checkbox" name="tasarufChecked" value="tasarufCheckedFive:true" />
+                                <Field className="form-check-input" type="checkbox" name="tasarufChecked" value="Elektrikli Isıtıcılar (750/ay):Evet" />
                                 Elektrikli Isıtıcılar (750/ay)
                               </label>
                             </div>
                             <div class="col-md-6">
                               <div className="card">
-                                <img src={pic12} class="card-img-top" height="150" />
+                                <img src={pic12} class="card-img-top resim" height="150" />
                               </div>
                               <label>
-                                <Field className="form-check-input" type="checkbox" name="tasarufChecked" value="tasarufCheckedSix:true" />
+                                <Field className="form-check-input" type="checkbox" name="tasarufChecked" value="Klima (350/ay):Evet" />
                                 Klima (350/ay)
                               </label>
                             </div>
                             <div class="col-md-6">
                               <div className="card">
-                                <img src={pic13} class="card-img-top" height="150" />
+                                <img src={pic13} class="card-img-top resim" height="150" />
                               </div>
                               <label>
-                                <Field className="form-check-input" type="checkbox" name="tasarufChecked" value="tasarufCheckedSeven:true" />
+                                <Field className="form-check-input" type="checkbox" name="tasarufChecked" value="Hava Perdesi (350/ay):Evet" />
                                 Hava Perdesi (350/ay)
                               </label>
                             </div>
                             <div class="col-md-6">
                               <div className="card">
-                                <img src={pic14} class="card-img-top" height="150" />
+                                <img src={pic14} class="card-img-top resim" height="150" />
                               </div>
                               <label>
-                                <Field className="form-check-input" type="checkbox" name="tasarufChecked" value="tasarufCheckedEigth:true" />
+                                <Field className="form-check-input" type="checkbox" name="tasarufChecked" value="Işıklar (100/ay):Evet" />
                                 Işıklar (100/ay)
                               </label>
                             </div>
@@ -470,62 +470,62 @@ function App() {
                           <div className="row">
                             <div class="col-md-6">
                               <div className="card">
-                                <img src={pic15} class="card-img-top" height="150" />
+                                <img src={pic15} class="card-img-top resim" height="150" />
                               </div>
                               <label>
-                                <Field className="form-check-input" type="checkbox" name="specialTasarufChecked" value="specialTasarufCheckedOne" />
+                                <Field className="form-check-input" type="checkbox" name="specialTasarufChecked" value="Sizin İçin Değerli Nesne(ler)in Yerinden Alınması:Evet" />
                                 Sizin İçin Değerli Nesne(ler)in Yerinden Alınması
                               </label>
                             </div>
                             <div class="col-md-6">
                               <div className="card">
-                                <img src={pic16} class="card-img-top" height="150" />
+                                <img src={pic16} class="card-img-top resim" height="150" />
                               </div>
                               <label>
-                                <Field className="form-check-input" type="checkbox" name="specialTasarufChecked" value="specialTasarufCheckedTwo" />
+                                <Field className="form-check-input" type="checkbox" name="specialTasarufChecked" value="Elektrikli Isıtıcı & İnsan Entegre Kontrolü:Evet" />
                                 Elektrikli Isıtıcı & İnsan Entegre Kontrolü
                               </label>
                             </div>
                             <div class="col-md-6">
                               <div className="card">
-                                <img src={pic17} class="card-img-top" height="150" />
+                                <img src={pic17} class="card-img-top resim" height="150" />
                               </div>
                               <label>
-                                <Field className="form-check-input" type="checkbox" name="specialTasarufChecked" value="specialTasarufCheckedThree" />
+                                <Field className="form-check-input" type="checkbox" name="specialTasarufChecked" value="Hava Perdesi & Kapı Entegre Kontrolü:Evet" />
                                 Hava Perdesi & Kapı Entegre Kontrolü
                               </label>
                             </div>
                             <div class="col-md-6">
                               <div className="card">
-                                <img src={pic18} class="card-img-top" height="150" />
+                                <img src={pic18} class="card-img-top resim" height="150" />
                               </div>
                               <label>
-                                <Field className="form-check-input" type="checkbox" name="specialTasarufChecked" value="specialTasarufCheckedFour" />
+                                <Field className="form-check-input" type="checkbox" name="specialTasarufChecked" value="Klima & Kapı-Pencere Verimsizlik Uyarısı:Evet" />
                                 Klima & Kapı-Pencere Verimsizlik Uyarısı
                               </label>
                             </div>
                             <div class="col-md-6">
                               <div className="card">
-                                <img src={pic19} class="card-img-top" height="150" />
+                                <img src={pic19} class="card-img-top resim" height="150" />
                               </div>
                               <label>
-                                <Field className="form-check-input" type="checkbox" name="specialTasarufChecked" value="specialTasarufCheckedFive" />
+                                <Field className="form-check-input" type="checkbox" name="specialTasarufChecked" value="Dondurucunun Kapağı & Dolabı Açık Kalması:Evet" />
                                 Dondurucunun Kapağı & Dolabı Açık Kalması
                               </label>
                             </div>
                             <div class="col-md-6">
                               <div className="card">
-                                <img src={pic20} class="card-img-top" height="150" />
+                                <img src={pic20} class="card-img-top resim" height="150" />
                               </div>
                               <label>
-                                <Field className="form-check-input" type="checkbox" name="specialTasarufChecked" value="specialTasarufCheckedSix" />
+                                <Field className="form-check-input" type="checkbox" name="specialTasarufChecked" value="Dondurucunun Aniden Kapanması:Evet" />
                                 Dondurucunun Aniden Kapanması
                               </label>
                             </div>
                             <div class="col-md-6">
 
                               <label>
-                                <Field className="form-check-input" type="checkbox" name="specialTasarufChecked" value="specialTasarufCheckedSeven" />
+                                <Field className="form-check-input" type="checkbox" name="specialTasarufChecked" value="Diğer:Evet" />
                                 Diğer
                               </label>
                               <div className="card">
