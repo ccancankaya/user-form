@@ -1,6 +1,6 @@
 import "./App.css";
 import { Formik, Form, Field } from 'formik';
-import eifel from "./images/eifel.jpg";
+import logo from "./images/logo.png";
 import pic1 from "./images/pic1.jpg";
 import pic2 from "./images/pic2.png";
 import pic3 from "./images/pic3.jpg";
@@ -34,17 +34,30 @@ function App() {
   const [page5Visible, setPage5Visible] = useState(false);
 
   const visibleToNext1 = () => {
-    setVisible(!visible);
-    setPage2Visible(!page2Visible)
+  
+      setVisible(!visible);
+      setPage2Visible(!page2Visible)
+  
+ 
   }
-  const visibleToNext2 = () => {
+  const visibleToNext2 = (value) => {
+    if(value.companyName==''){
+      alertify.error('Firma ismi boş bırakılamaz!'); 
+    }
+    else{
     setPage2Visible(!page2Visible)
     setPage3Visible(!page3Visible)
+    }
   }
 
-  const visibleToNext3 = () => {
-    setPage3Visible(!page3Visible)
-    setPage4Visible(!page4Visible)
+  const visibleToNext3=(value)=>{
+    if(value.outdoorChecked.length==0 || value.indoorChecked.length==0){
+      alertify.error('İç ve dış alanlardan seçim yapmalısınız!'); 
+    }
+    else{
+      setPage3Visible(!page3Visible)
+      setPage4Visible(!page4Visible)
+    }
   }
 
   const visibleToNext4 = () => {
@@ -66,17 +79,39 @@ function App() {
     setPage2Visible(!page2Visible)
   }
 
+  const refreshPage=()=>{
+   window.location.reload()
+  }
+
   const visibleToBack4 = () => {
     setPage2Visible(!page2Visible)
     setVisible(!visible)
   }
+const validateCompanyName=(value)=>{
+  let error;
+   if (!value) {
+     error = 'Firma ismi boş bırakılamaz!';
+   } 
+   return error;
+}
+
+const validateSecurityCheck=(value)=>{
+  let error;
+   if (!value) {
+     error = 'En az bir adet seçim yapmalısınız!';
+   } 
+   return error;
+}
+
+
+
 
   return (
 
     <div className="container app">
       <div className="row page1">
         <div className="col-md-3 left">
-          <img className="imgEifel" src={eifel} width="320" height="670" />
+          <img className="imgEifel" src={logo} width="320" height="670" />
         </div>
 
         <div className="col-md-9 bg-dark right">
@@ -112,8 +147,10 @@ function App() {
               //    .then(res => res.json())
               //    .then(res => console.log(JSON.stringify(res, null, 2)));
 
-              alertify.alert('Mesaj', 'Gönderiliyor');
-              let query3 = 'mutation{ create_item (board_id:2253272966, item_name:\"Yeni form kaydı\") { id } }';
+
+
+              alertify.alert('Mesaj', 'Gönderiliyor, Lütfen bekleyiniz!');
+              let query3 = `mutation{ create_item (board_id:2253272966, item_name:\"${values.companyName} - Değer Analiz Raporu\") { id } }`;
 
               fetch("https://api.monday.com/v2", {
                 method: 'post',
@@ -139,19 +176,23 @@ function App() {
                         myBoardId: 2253272966,
                         myItemId: 2267886158,
                         myItemId: Number(res.data.create_item.id),
-                        myColumnValues: `{\"text\" : \"${values.companyName}\",\"b\" : \"${values.firstAndLastName}\",\"c\" : \"${values.email}\",\"metin\" : \"${values.phone}\",\"kay_t_tarihi\" : \"${new Date().toLocaleString("tr-TR")}\",\"metin6\" : \"${values.outdoorChecked.toString()}\",\"metin2\" : \"${values.indoorChecked.toString()}\",\"metin9\" : \"${values.freeText}\",\"metin96\" : \"${values.tasarufChecked.toString()}\",\"metin26\" : \"${values.freeText2}\",\"metin5\" : \"${values.specialTasarufChecked.toString()}\",\"metin7\" : \"${values.freeText4}\"}`
+                        myColumnValues: `{\"text\" : \"${values.companyName}\",\"b\" : \"${values.firstAndLastName}\",\"c\" : \"${values.email}\",\"metin\" : \"${values.phone}\",\"metin52\" : \"${window.location.href}\",\"kay_t_tarihi\" : \"${new Date().toLocaleString("tr-TR")}\",\"metin6\" : \"${values.outdoorChecked.toString()}\",\"metin2\" : \"${values.indoorChecked.toString()}\",\"metin9\" : \"${values.freeText}\",\"metin96\" : \"${values.tasarufChecked.toString()}\",\"metin26\" : \"${values.freeText2}\",\"metin5\" : \"${values.specialTasarufChecked.toString()}\",\"metin7\" : \"${values.freeText4}\"}`
                       })
                     })
                   })
                     .then(res => {
-                      alertify.alert('Gönderildi', function () {
-                        alertify.success('Gönderildi');
-                      });; window.location.reload()
+                      alertify.alert('Değer analiziniz yapıldı, bir eyedius teknik uzmanı sizinle irtibata geçecek.'); 
+                      
                     })
                 }
                 );
             }}
+
+         
+     
+
           >
+            {({ errors, touched, validateField, validateForm,values }) => (
             <Form>
               <div class={`card mt-3 mb-3 pagetext ${visible ? 'visible' : 'd-none'}`}>
                 <div class="card-header">
@@ -203,7 +244,7 @@ function App() {
                       (e) ve (f) bentleri uyarınca yapılan işlemlerin, kişisel verilerin aktarıldığı üçüncü kişilere bildirilmesini isteme,
                       İşlenen verilerin münhasıran otomatik sistemler vasıtasıyla analiz edilmesi suretiyle kişinin kendisi aleyhine bir sonucun ortaya çıkmasına itiraz etme,
                       Kişisel verilerin kanuna aykırı olarak işlenmesi sebebiyle zarara uğraması hâlinde zararın giderilmesini talep etme, haklarına sahiptir.
-                      Yukarıda sayılan haklarınızı kullanmak üzere email@site.com üzerinden bizimle iletişime geçebilirsiniz.
+                      Yukarıda sayılan haklarınızı kullanmak üzere info@eyedius.com üzerinden bizimle iletişime geçebilirsiniz.
                     </div>
                   </div>
 
@@ -222,7 +263,8 @@ function App() {
                 <div class="card-body">
                   <div class="mb-3">
                     <label for="companyName" class="form-label">Firma Adı <span style={{ color: "red" }}>*</span></label>
-                    <Field type="text" name="companyName" className="form-control" />
+                    <Field type="text" name="companyName" validate={validateCompanyName} className="form-control" />
+                    {errors.companyName && touched.companyName && <div>{errors.companyName}</div>}
                   </div>
                   <div class="mb-3">
                     <label for="firstAndLastName" class="form-label">İsim soyisim</label>
@@ -230,7 +272,7 @@ function App() {
                   </div>
                   <div class="mb-3">
                     <label for="email" class="form-label">E-posta adresi</label>
-                    <Field type="email" name="email" className="form-control" />
+                    <Field type="text" name="email" className="form-control" />
                   </div>
                   <div class="mb-3">
                     <label for="phone" class="form-label">Cep telefonu</label>
@@ -239,7 +281,7 @@ function App() {
                 </div>
                 <div class="card-footer text-end">
                   <button type="button" class="btn btn-primary" onClick={visibleToBack4} style={{ marginRight: "5px" }}>Geri</button>
-                  <button type="button" class="btn btn-primary" onClick={visibleToNext2}>İleri</button>
+                  <button type="button" class="btn btn-primary" onClick={()=>visibleToNext2(values)}>İleri</button>
                 </div>
               </div>
 
@@ -338,7 +380,7 @@ function App() {
                 </div>
                 <div class="card-footer text-end">
                   <button type="button" class="btn btn-primary" onClick={visibleToBack3} style={{ marginRight: "5px" }}>Geri</button>
-                  <button type="button" class="btn btn-primary" onClick={visibleToNext3}>İleri</button>
+                  <button type="button" class="btn btn-primary" onClick={()=>visibleToNext3(values)}>İleri</button>
                 </div>
               </div>
 
@@ -466,7 +508,7 @@ function App() {
                         </div>
                         <div class="card-body">
 
-                          <p class="card-text mb-3" >İş Yerinizden Çıkar Çıkmaz, Aşağıdakilerden Hangilerinin Kapalı Olduğuna Emin Olmak İstersiniz?</p>
+                          <p class="card-text mb-3" >İş Yerinizde Sürekli Kontrol Edilmesini İstediğiniz Özel Durumlar Var mı?</p>
                           <div className="row">
                             <div class="col-md-6">
                               <div className="card">
@@ -510,7 +552,7 @@ function App() {
                               </div>
                               <label>
                                 <Field className="form-check-input" type="checkbox" name="specialTasarufChecked" value="Dondurucunun Kapağı & Dolabı Açık Kalması:Evet" />
-                                Dondurucunun Kapağı & Dolabı Açık Kalması
+                                Dondurucunun Kapağı & Dolabın Açık Kalması
                               </label>
                             </div>
                             <div class="col-md-6">
@@ -550,12 +592,15 @@ function App() {
 
 
                 <div class="card-footer text-end">
+                <button type="button" class="btn btn-primary" onClick={refreshPage} style={{ marginRight: "5px" }}>Başa dön</button>
+
                   <button type="button" class="btn btn-primary" onClick={visibleToBack1} style={{ marginRight: "5px" }}>Geri</button>
 
                   <button type="submit" class="btn btn-primary">Kaydet</button>
                 </div>
               </div>
             </Form>
+              )}
           </Formik>
 
         </div>
